@@ -8,8 +8,7 @@ const char* networkPswd =  "your wifi psw";
 // Are we currently connected?
 boolean connected = false;
 
-//The udp library class
-WiFiUDP udp;
+//The ACUDP library class
 ACUDP acTelemetry;
 
 void setup(){
