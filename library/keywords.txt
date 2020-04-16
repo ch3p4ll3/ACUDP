@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map For ACUDP
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ACUDP	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+initialize	KEYWORD2
+sendHandshake	KEYWORD2
+sendUpdate	KEYWORD2
+sendSpot	KEYWORD2
+sendQuit	KEYWORD2
+readPacket	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
