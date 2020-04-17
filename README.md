@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/480a78185b0d4cc8b9707b5d1942ab45)](https://www.codacy.com/manual/slinucs/ACUDP?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ch3p4ll3/ACUDP&amp;utm_campaign=Badge_Grade)
 # ACUDP
 Library for ESP32 to receive Assetto Corsa telemetry via UDP
 
