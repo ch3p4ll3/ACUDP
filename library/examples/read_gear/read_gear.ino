@@ -49,10 +49,10 @@ void setup(){
 void loop(){
   if(connected){
     RTCarInfo carInfo; //create a struct to save all the data
-    carInfo = acTelemetry.readPacket(); //save on the new struct all the data returned by readPacket
+    carInfo = acTelemetry.readUpdate(); //save on the new struct all the data returned by readUpdate
     Serial.println(carInfo.gear); //write the value of the gear on the serial
     //You can also access only one information by doing:
-    //Serial.println(acTelemetry.readPacket().gear);
+    //Serial.println(acTelemetry.readUpdate().gear);
   }
   delay(10);
 }
