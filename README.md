@@ -81,7 +81,8 @@ void connectToWiFi(const char * ssid, const char * pwd){
 | void        | sendUpdate()                                    | This method must be used when the client wants to be updated from the specific ACServer.
 | void        | sendSpot()                                      | This method must be used when the client wants to be updated from the specific ACServer just for SPOT Events (e.g.: the end of a lap).
 | void         | sendQuit()                                     | This method must be used when the client wants to leave the comunication with ACServer.
-| RTCarInfo    | readPacket()                                   | This method reads the packets that AC sends to esp32 and saves them in a struct
+| RTCarInfo    | readUpdate()                                   | This method is used to read the packets that AC sends if it has been decided to send the update
+| RTLap        | readSpot()                                     | This method is used to read the packets that AC sends if it has been decided to send the spot
 
 ### RTCarInfo struct
 |   type   |           name         |
@@ -128,3 +129,12 @@ void connectToWiFi(const char * ssid, const char * pwd){
 | float    | carPositionNormalized  |
 | float    | carSlope               |
 | float[3] | carCoordinates         |
+
+### RTLap struct
+|   RTLap  |         name        |
+| -------- | ------------------- |
+| int      | carIdentifierNumber |
+| int      | lap                 |
+| char[50] | driverName          |
+| char[50] | carName             |
+| int      | time                |
