@@ -17,7 +17,8 @@ sendHandshake	KEYWORD2
 sendUpdate	KEYWORD2
 sendSpot	KEYWORD2
 sendQuit	KEYWORD2
-readPacket	KEYWORD2
+readUpdate	KEYWORD2
+readSpot	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

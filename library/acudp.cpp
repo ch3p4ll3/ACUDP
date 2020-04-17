@@ -59,13 +59,25 @@ void ACUDP::sendQuit(){
 }
 
 
-RTCarInfo ACUDP::readPacket(){
+RTCarInfo ACUDP::readUpdate(){
 	RTCarInfo carInfo;
 	uint8_t buffer[sizeof(carInfo)];
 	memset(buffer, 0, sizeof(carInfo));
 	udp.parsePacket();
 	if(udp.read(buffer, sizeof(carInfo)) == sizeof(carInfo)){
 		memcpy(&carInfo, buffer, sizeof(carInfo));
+		return carInfo;
 	}
-	return carInfo;
+}
+
+
+RTLap ACUDP::readSpot(){
+	RTLap Lap;
+	uint8_t buffer[sizeof(Lap)];
+	memset(buffer, 0, sizeof(Lap));
+	udp.parsePacket();
+	if(udp.read(buffer, sizeof(Lap)) == sizeof(Lap)){
+		memcpy(&Lap, buffer, sizeof(Lap));
+		return Lap;
+	}
 }

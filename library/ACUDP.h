@@ -49,21 +49,6 @@ struct RTCarInfo{
 	float carCoordinates[3];
 } ;
 
-struct handshaker{
-	int identifier;
-	int version;
-	int operationId;
-};
-
-struct handshackerResponse{
-	char carName[50];
-	char driverName[50];
-	int identifier;
-	int version;
-	char trackName[50];
-	char trackConfig[50];
-};
-
 struct RTLap{
 	int carIdentifierNumber;
 	int lap;
@@ -76,6 +61,21 @@ struct RTLap{
 class ACUDP
 {
 	private:
+	    struct handshaker{
+        	int identifier;
+        	int version;
+        	int operationId;
+        };
+
+        struct handshackerResponse{
+        	char carName[50];
+        	char driverName[50];
+        	int identifier;
+        	int version;
+        	char trackName[50];
+        	char trackConfig[50];
+        };
+
 		handshaker hand = {1, 1, 0};
 		handshaker update = {1, 1, 1};
 		handshaker spot = {1, 1, 2};
@@ -95,7 +95,8 @@ class ACUDP
 		void sendUpdate();
 		void sendSpot();
 		void sendQuit();
-		RTCarInfo readPacket();
+		RTCarInfo readUpdate();
+		RTLap readSpot();
 };
 
 #endif
