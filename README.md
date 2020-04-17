@@ -1,5 +1,5 @@
 # ACUDP
-library for ESP32 to receive Assetto Corsa telemetry via UDP
+Library for ESP32 to receive Assetto Corsa telemetry via UDP
 
 ## How to install
 Copy the `ACUDP` folder contained in the library folder to the Arduino libraries folder. Once the folder has been copied, the `ACUDP` library should appear in the Arduino IDE list of libraries. The examples should also appear in the examples menu in the Arduino IDE.
