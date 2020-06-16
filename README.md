@@ -3,7 +3,7 @@
 Library for ESP32 to receive Assetto Corsa telemetry via UDP
 
 ## How to install
-Copy the `ACUDP` folder contained in the library folder to the Arduino libraries folder. Once the folder has been copied, the `ACUDP` library should appear in the Arduino IDE list of libraries. The examples should also appear in the examples menu in the Arduino IDE.
+Copy the  `ACUDP`  folder contained in the library folder to the Arduino libraries folder. Once the folder has been copied, the  `ACUDP`  library should appear in the Arduino IDE list of libraries. The examples should also appear in the examples menu in the Arduino IDE.
 
 ## Simple Example
 ```C
@@ -74,68 +74,68 @@ void connectToWiFi(const char * ssid, const char * pwd){
 
 ## ACUDP Library API
 ### Methods
-| return type |                name of the method               |    comment    |
-| ----------- | ----------------------------------------------- | ------------- |
-| void        | initialize(char * ip, int port, IPAddress ipEsp)| This method is used to initialize the library. Accept as parameters the ip address where AC is executed, the UDP port and finally the address of esp32
-| void        | initialize(char * ip, IPAddress ipEsp)          | This method is used to initialize the library. Accept as parameters the ip address where AC is executed and the address of esp32
-| void        | sendHandshake()                                 | This method is used to send the handshake to the AC server
-| void        | sendUpdate()                                    | This method must be used when the client wants to be updated from the specific ACServer.
-| void        | sendSpot()                                      | This method must be used when the client wants to be updated from the specific ACServer just for SPOT Events (e.g.: the end of a lap).
-| void         | sendQuit()                                     | This method must be used when the client wants to leave the comunication with ACServer.
-| RTCarInfo    | readUpdate()                                   | This method is used to read the packets that AC sends if it has been decided to send the update
-| RTLap        | readSpot()                                     | This method is used to read the packets that AC sends if it has been decided to send the spot
+| return type |                name of the method               |                                                                comment                                                                                 |
+| ----------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| void        | initialize(char * ip, int port, IPAddress ipEsp)| This method is used to initialize the library. Accept as parameters the ip address where AC is executed, the UDP port and finally the address of esp32 |
+| void        | initialize(char * ip, IPAddress ipEsp)          | This method is used to initialize the library. Accept as parameters the ip address where AC is executed and the address of esp32                       |
+| void        | sendHandshake()                                 | This method is used to send the handshake to the AC server                                                                                             |
+| void        | sendUpdate()                                    | This method must be used when the client wants to be updated from the specific ACServer.                                                               |
+| void        | sendSpot()                                      | This method must be used when the client wants to be updated from the specific ACServer just for SPOT Events (e.g.: the end of a lap).                 |
+| void        | sendQuit()                                      | This method must be used when the client wants to leave the comunication with ACServer.                                                                |
+| RTCarInfo   | readUpdate()                                    | This method is used to read the packets that AC sends if it has been decided to send the update                                                        |
+| RTLap       | readSpot()                                      | This method is used to read the packets that AC sends if it has been decided to send the spot                                                          |
 
 ### RTCarInfo struct
-|   type   |           name         |
-| -------- | ---------------------- |
-| char     | identifier             |
-| int      | size                   |
-| float    | speed_Kmh              |
-| float    | speed_Mph              |
-| float    | speed_Ms               |
-| bool     | isAbsEnabled           |
-| bool     | isAbsInAction          |
-| bool     | isTcInAction           |
-| bool     | isTcEnabled            |
-| bool     | isInPit                |
-| bool     | isEngineLimiterOn      |
-| float    | accG_vertical          |
-| float    | accG_horizontal        |
-| float    | accG_frontal           |
-| int      | lapTime                |
-| int      | lastLap                |
-| int      | bestLap                |
-| int      | lapCount               |
-| float    | gas                    |
-| float    | brake                  |
-| float    | clutch                 |
-| float    | engineRPM              |
-| float    | steer                  |
-| int      | gear                   |
-| float    | cgHeight               |
-| float[4] | wheelAngularSpeed      |
-| float[4] | slipAngle              |
-| float[4] | slipAngle_ContactPatch |
-| float[4] | slipRatio              |
-| float[4] | tyreSlip               |
-| float[4] | ndSlip                 |
-| float[4] | load                   |
-| float[4] | Dy                     |
-| float[4] | Mz                     |
-| float[4] | tyreDirtyLevel         |
-| float[4] | camberRAD              |
-| float[4] | tyreRadius             |
-| float[4] | tyreLoadedRadius       |
-| float[4] | suspensionHeight       |
-| float    | carPositionNormalized  |
-| float    | carSlope               |
-| float[3] | carCoordinates         |
+|    type   |           name         |
+| --------- | ---------------------- |
+| char      | identifier             |
+| int       | size                   |
+| float     | speed_Kmh              |
+| float     | speed_Mph              |
+| float     | speed_Ms               |
+| bool      | isAbsEnabled           |
+| bool      | isAbsInAction          |
+| bool      | isTcInAction           |
+| bool      | isTcEnabled            |
+| bool      | isInPit                |
+| bool      | isEngineLimiterOn      |
+| float     | accG_vertical          |
+| float     | accG_horizontal        |
+| float     | accG_frontal           |
+| int       | lapTime                |
+| int       | lastLap                |
+| int       | bestLap                |
+| int       | lapCount               |
+| float     | gas                    |
+| float     | brake                  |
+| float     | clutch                 |
+| float     | engineRPM              |
+| float     | steer                  |
+| int       | gear                   |
+| float     | cgHeight               |
+| float\[4] | wheelAngularSpeed      |
+| float\[4] | slipAngle              |
+| float\[4] | slipAngle_ContactPatch |
+| float\[4] | slipRatio              |
+| float\[4] | tyreSlip               |
+| float\[4] | ndSlip                 |
+| float\[4] | load                   |
+| float\[4] | Dy                     |
+| float\[4] | Mz                     |
+| float\[4] | tyreDirtyLevel         |
+| float\[4] | camberRAD              |
+| float\[4] | tyreRadius             |
+| float\[4] | tyreLoadedRadius       |
+| float\[4] | suspensionHeight       |
+| float     | carPositionNormalized  |
+| float     | carSlope               |
+| float\[3] | carCoordinates         |
 
 ### RTLap struct
-|   RTLap  |         name        |
-| -------- | ------------------- |
-| int      | carIdentifierNumber |
-| int      | lap                 |
-| char[50] | driverName          |
-| char[50] | carName             |
-| int      | time                |
+|   RTLap   |         name         |
+| --------- | -------------------- |
+| int       | carIdentifierNumber  |
+| int       | lap                  |
+| char\[50] | driverName           |
+| char\[50] | carName              |
+| int       | time                 |
