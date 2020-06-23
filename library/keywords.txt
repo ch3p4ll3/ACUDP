@@ -12,13 +12,12 @@ ACUDP	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-initialize	KEYWORD2
+begin	KEYWORD2
 sendHandshake	KEYWORD2
 sendUpdate	KEYWORD2
 sendSpot	KEYWORD2
 sendQuit	KEYWORD2
-readUpdate	KEYWORD2
-readSpot	KEYWORD2
+read	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

@@ -58,6 +58,12 @@ struct RTLap{
 
 };
 
+struct Result{
+    bool result;
+    RTCarInfo carInfo;
+    RTLap lap;
+};
+
 class ACUDP
 {
 	private:
@@ -81,22 +87,26 @@ class ACUDP
 		handshaker spot = {1, 1, 2};
 		handshaker quit = {1, 1, 3};
 		handshackerResponse tmpHandshake;
-		
-		
+
+
 		char * udpAddress;
 		int udpPort;
 		WiFiUDP udp;
 		IPAddress ipEsp;
+		bool isUpdate;
+
+
+		Result readUpdate();
+		Result readSpot();
 
 	public:
-		void initialize(char * ip, int port, IPAddress ipEsp);
-		void initialize(char * ip, IPAddress ipEsp);
+		void begin(char * ip, int port, IPAddress ipEsp);
+		void begin(char * ip, IPAddress ipEsp);
 		void sendHandshake();
 		void sendUpdate();
 		void sendSpot();
 		void sendQuit();
-		RTCarInfo readUpdate();
-		RTLap readSpot();
+		Result read();
 };
 
 #endif
