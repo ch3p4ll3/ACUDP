@@ -102,8 +102,8 @@ void connectToWiFi(const char * ssid, const char * pwd){
 ### Methods
 | return type |                name of the method               |                                                                        description                                                                      |
 | ----------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| void        | initialize(char * ip, int port, IPAddress ipEsp)| This method is used to initialize the library. Accept as parameters the ip address where AC is executed, the UDP port and finally the address of esp32  |
-| void        | initialize(char * ip, IPAddress ipEsp)          | This method is used to initialize the library. Accept as parameters the ip address where AC is executed and the address of esp32                        |
+| void        | begin(char * ip, int port, IPAddress ipEsp)     | This method is used to initialize the library. Accept as parameters the ip address where AC is executed, the UDP port and finally the address of esp32  |
+| void        | begin(char * ip, IPAddress ipEsp)               | This method is used to initialize the library. Accept as parameters the ip address where AC is executed and the address of esp32                        |
 | void        | sendHandshake()                                 | This method is used to send the handshake to the AC server                                                                                              |
 | void        | sendUpdate()                                    | This method must be used when the client wants to be updated from the specific ACServer.                                                                |
 | void        | sendSpot()                                      | This method must be used when the client wants to be updated from the specific ACServer just for SPOT Events (e.g.: the end of a lap).                  |
@@ -159,8 +159,8 @@ void connectToWiFi(const char * ssid, const char * pwd){
 | float\[4] | tyreRadius             |
 | float\[4] | tyreLoadedRadius       |
 | float\[4] | suspensionHeight       |
-| float    | carPositionNormalized   |
-| float    | carSlope                |
+| float     | carPositionNormalized  |
+| float     | carSlope               |
 | float\[3] | carCoordinates         |
 
 ### RTLap struct

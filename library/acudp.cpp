@@ -29,6 +29,9 @@ void ACUDP::sendHandshake(){
 		memcpy(&tmpHandshake, buffer, sizeof(tmpHandshake));
 		Serial.println();
 	}
+
+	else
+	    Serial.println("Error, no Handshake received!");
 }
 
 
@@ -63,14 +66,12 @@ void ACUDP::sendQuit(){
 
 Result ACUDP::readUpdate(){
     Result result;
-	RTCarInfo carInfo;
-    uint8_t buffer[sizeof(carInfo)];
-    memset(buffer, 0, sizeof(carInfo));
+    uint8_t buffer[sizeof(result.carInfo)];
+    memset(buffer, 0, sizeof(result.carInfo));
     udp.parsePacket();
-    if(udp.read(buffer, sizeof(carInfo)) == sizeof(carInfo)){
-        memcpy(&carInfo, buffer, sizeof(carInfo));
+    if(udp.read(buffer, sizeof(result.carInfo)) == sizeof(result.carInfo)){
+        memcpy(&result.carInfo, buffer, sizeof(result.carInfo));
         result.result = isUpdate;
-        result.carInfo = carInfo;
         memset(&result.lap, 0, sizeof(result.lap));
         return result;
     }
@@ -86,14 +87,12 @@ Result ACUDP::readUpdate(){
 
 Result ACUDP::readSpot(){
     Result result;
-	RTLap Lap;
-    uint8_t buffer[sizeof(Lap)];
-    memset(buffer, 0, sizeof(Lap));
+    uint8_t buffer[sizeof(result.lap)];
+    memset(buffer, 0, sizeof(result.lap));
     udp.parsePacket();
-    if(udp.read(buffer, sizeof(Lap)) == sizeof(Lap)){
-        memcpy(&Lap, buffer, sizeof(Lap));
+    if(udp.read(buffer, sizeof(result.lap)) == sizeof(result.lap)){
+        memcpy(&result.lap, buffer, sizeof(result.lap));
         result.result = isUpdate;
-        result.lap = Lap;
         memset(&result.carInfo, 0, sizeof(result.carInfo));
         return result;
     }
