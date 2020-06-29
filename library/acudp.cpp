@@ -2,13 +2,13 @@
 #include <WiFiUdp.h>
 
 /* funzione di inizializzazione */
-void ACUDP::initialize(char * ip, int port, IPAddress ipEsp){
+void ACUDP::begin(char * ip, int port, IPAddress ipEsp){
 	udpAddress = ip;
 	udpPort = port;
 	udp.begin(ipEsp, udpPort);
 }
 
-void ACUDP::initialize(char * ip, IPAddress ipEsp){
+void ACUDP::begin(char * ip, IPAddress ipEsp){
 	udpAddress = ip;
 	udpPort = 9996;
 	udp.begin(ipEsp, udpPort);
@@ -21,7 +21,7 @@ void ACUDP::sendHandshake(){
 	udp.write(b, sizeof(hand));
 	udp.endPacket();
 
-	//receive 
+	//receive
 	uint8_t buffer[sizeof(tmpHandshake)];
 	memset(buffer, 0, sizeof(tmpHandshake));
 	udp.parsePacket();
@@ -29,6 +29,9 @@ void ACUDP::sendHandshake(){
 		memcpy(&tmpHandshake, buffer, sizeof(tmpHandshake));
 		Serial.println();
 	}
+
+	else
+	    Serial.println("Error, no Handshake received!");
 }
 
 
@@ -38,6 +41,7 @@ void ACUDP::sendUpdate(){
 	memcpy(b, &update, sizeof(update));
 	udp.write(b, sizeof(update));
 	udp.endPacket();
+	isUpdate = true;
 }
 
 
@@ -47,6 +51,7 @@ void ACUDP::sendSpot(){
 	memcpy(b, &update, sizeof(spot));
 	udp.write(b, sizeof(spot));
 	udp.endPacket();
+	isUpdate = false;
 }
 
 
@@ -59,25 +64,49 @@ void ACUDP::sendQuit(){
 }
 
 
-RTCarInfo ACUDP::readUpdate(){
-	RTCarInfo carInfo;
-	uint8_t buffer[sizeof(carInfo)];
-	memset(buffer, 0, sizeof(carInfo));
-	udp.parsePacket();
-	if(udp.read(buffer, sizeof(carInfo)) == sizeof(carInfo)){
-		memcpy(&carInfo, buffer, sizeof(carInfo));
-		return carInfo;
-	}
+Result ACUDP::readUpdate(){
+    Result result;
+    uint8_t buffer[sizeof(result.carInfo)];
+    memset(buffer, 0, sizeof(result.carInfo));
+    udp.parsePacket();
+    if(udp.read(buffer, sizeof(result.carInfo)) == sizeof(result.carInfo)){
+        memcpy(&result.carInfo, buffer, sizeof(result.carInfo));
+        result.result = isUpdate;
+        memset(&result.lap, 0, sizeof(result.lap));
+        return result;
+    }
+
+    else{
+        result.result = isUpdate;
+        memset(&result.carInfo, 0, sizeof(result.carInfo));
+        memset(&result.lap, 0, sizeof(result.lap));
+        return result;
+    }
 }
 
 
-RTLap ACUDP::readSpot(){
-	RTLap Lap;
-	uint8_t buffer[sizeof(Lap)];
-	memset(buffer, 0, sizeof(Lap));
-	udp.parsePacket();
-	if(udp.read(buffer, sizeof(Lap)) == sizeof(Lap)){
-		memcpy(&Lap, buffer, sizeof(Lap));
-		return Lap;
-	}
+Result ACUDP::readSpot(){
+    Result result;
+    uint8_t buffer[sizeof(result.lap)];
+    memset(buffer, 0, sizeof(result.lap));
+    udp.parsePacket();
+    if(udp.read(buffer, sizeof(result.lap)) == sizeof(result.lap)){
+        memcpy(&result.lap, buffer, sizeof(result.lap));
+        result.result = isUpdate;
+        memset(&result.carInfo, 0, sizeof(result.carInfo));
+        return result;
+    }
+
+    else{
+        result.result = isUpdate;
+        memset(&result.carInfo, 0, sizeof(result.carInfo));
+        memset(&result.lap, 0, sizeof(result.lap));
+        return result;
+    }
+}
+
+Result ACUDP::read(){
+    if (isUpdate) return readUpdate();
+
+    else return readSpot();
 }
